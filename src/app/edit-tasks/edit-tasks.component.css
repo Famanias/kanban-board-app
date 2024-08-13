@@ -1,0 +1,64 @@
+.form-group{
+    display: flex;
+    margin-top: 25px;
+}
+
+label{
+    width: 300px;
+    font-size: 25px;
+
+}
+
+h1{
+    font-size: 50px;
+    display: flex;
+}
+
+.radio-group{
+    display: flex;
+}
+
+input{
+    margin-left: 50px;
+}
+
+.form-todo-name{
+    font-size: 25px;
+
+}
+
+.ano-gagawin{
+    width: auto;
+}
+
+.status-label{
+    width: 195px;
+
+}
+
+.datetime-local{
+    width: 150px;
+}
+
+.btn{
+    background-color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    color: black;
+
+}
+
+.container{
+    width: 750px;
+    padding: 50px;
+    background-image: url('/assets/background-aesthethic.jpg');
+    background-size: cover;
+    color: white;
+}
+
+.radio-group{
+    gap: 10px;
+}

@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="text-center">
+      <h1>Edit Task</h1>
+  </div>
+      <form [formGroup]="addForm" novalidate class="form">
+          <div class="form-group">
+              <label for="task_name">Task Name</label>
+              <input type="text" id="task_name" class="form-control" name="task_name" formControlName="task_name">
+          </div>
+          <div class="form-group">
+              <label for="task_desc">Task Description</label>
+              <input type="text" id="task_desc" class="form-control" name="task_desc" formControlName="task_desc">
+          </div>
+          <div class="form-group">
+              <label class="status-label">Status</label>
+              <div class="radio-group">
+                  <input formControlName="status" type="radio" name="status" value="todo" class="form-todo-name"><label class="ano-gagawin">Todo</label>
+                  <input formControlName="status" type="radio" name="status" value="doing" class="form-todo-name"><label class="ano-gagawin">Doing</label>
+                  <input formControlName="status" type="radio" name="status" value="done" class="form-todo-name"><label class="ano-gagawin">Done</label>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label for="date">Task Date</label>
+              <input type="datetime-local" id="date" class="form-control" name="date" formControlName="date">
+          </div>
+
+          <div class="form-group text-center">
+              <button class="btn btn-success" (click)="onEdit()">Update Task</button>
+          </div>
+      </form>
+
+</div>
+
+

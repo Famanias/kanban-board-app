@@ -1,0 +1,141 @@
+<!-- nilagyan ng width para malapad yung task containers  -->
+<button class="add-task-button btn-primary" (click)="openDialog()">
+  <div class="add-task-text">
+    ADD TASK
+  </div>
+</button>
+
+<div class="container" style="width: 5000px;">
+  <div class="row" cdkDropListGroup>
+    <!-- TODO Column -->
+    <div class="col-md-4">
+      <h2 class="text-center">To Do - {{todoTasks.length}} </h2>
+      <div class="list" id="todoList" cdkDropList 
+           [cdkDropListData]="todoTasks" 
+           [cdkDropListConnectedTo]="['doingList', 'doneList']" 
+           (cdkDropListDropped)="drop($event, 'todo')">
+        <div *ngIf="todoTasks.length === 0" class="no-tasks-message">No TODO tasks</div>
+        <div class="task" *ngFor="let task of todoTasks" cdkDrag>
+          <div class="task-header">
+            <div class="task-date">Due date: {{formatDate(task.date)}}</div>
+            <div class="task-actions">
+              <!-- Due Status Icon with Tooltip -->
+              <span class="due-icon-wrapper">
+                <span *ngIf="getDueStatus(task.date) === 'overdue'" class="due-icon" style="color:red;">
+                  <i class="bi bi-exclamation-circle"></i>
+                  <span class="tooltip-text">Overdue</span>
+                </span>
+                <span *ngIf="getDueStatus(task.date) === 'due-today'" class="due-icon" style="color:orange;">
+                  <i class="bi bi-clock"></i>
+                  <span class="tooltip-text">Almost Due</span>
+                </span>
+                <span *ngIf="getDueStatus(task.date) === 'due-in-2-days'" class="due-icon" style="color:green;">
+                  <i class="bi bi-clock"></i>
+                  <span class="tooltip-text">Not Due Yet</span>
+                </span>
+              </span>
+              <!-- Edit Button -->
+              <button (click)="openEditDialog(task.id)" class="edit-btn" style="color:gray;">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <!-- Delete Button -->
+              <button (click)="deleteTask(task)" class="btn">
+                <i class="bi bi-trash" style="color:gray;"></i>
+              </button>
+            </div>
+          </div>
+          <div class="task-body">
+            <div class="task-name">{{task.task_name}}</div>
+            <div class="task-desc">{{task.task_desc}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- DOING Column -->
+    <div class="col-md-4">
+      <h2 class="text-center">Doing - {{doingTasks.length}} </h2>
+      <div class="list" id="doingList" cdkDropList 
+           [cdkDropListData]="doingTasks" 
+           [cdkDropListConnectedTo]="['todoList', 'doneList']" 
+           (cdkDropListDropped)="drop($event, 'doing')">
+        <div *ngIf="doingTasks.length === 0" class="no-tasks-message">No DOING tasks</div>
+        <div class="task" *ngFor="let task of doingTasks" cdkDrag>
+          <div class="task-header">
+            <div class="task-date">Due date: {{formatDate(task.date)}}</div>
+            <div class="task-actions">
+              <!-- Due Status Icon with Tooltip -->
+              <span class="due-icon-wrapper">
+                <span *ngIf="getDueStatus(task.date) === 'overdue'" class="due-icon" style="color:red;">
+                  <i class="bi bi-exclamation-circle"></i>
+                  <span class="tooltip-text">Overdue</span>
+                </span>
+                <span *ngIf="getDueStatus(task.date) === 'due-today'" class="due-icon" style="color:orange;">
+                  <i class="bi bi-clock"></i>
+                  <span class="tooltip-text">Almost Due</span>
+                </span>
+                <span *ngIf="getDueStatus(task.date) === 'due-in-2-days'" class="due-icon" style="color:green;">
+                  <i class="bi bi-clock"></i>
+                  <span class="tooltip-text">Not Due Yet</span>
+                </span>
+              </span>
+              <button (click)="openEditDialog(task.id)" class="edit-btn" style="color:gray;">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button (click)="deleteTask(task)" class="btn">
+                <i class="bi bi-trash" style="color:gray;"></i>
+              </button>
+            </div>
+          </div>
+          <div class="task-body">
+            <div class="task-name">{{task.task_name}}</div>
+            <div class="task-desc">{{task.task_desc}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- DONE Column -->
+    <div class="col-md-4">
+      <h2 class="text-center">Done - {{doneTasks.length}} </h2>
+      <div class="list" id="doneList" cdkDropList 
+           [cdkDropListData]="doneTasks" 
+           [cdkDropListConnectedTo]="['todoList', 'doingList']" 
+           (cdkDropListDropped)="drop($event, 'done')">
+        <div *ngIf="doneTasks.length === 0" class="no-tasks-message">No DONE tasks</div>
+        <div class="task" *ngFor="let task of doneTasks" cdkDrag>
+          <div class="task-header">
+            <div class="task-date">Due date: {{formatDate(task.date)}}</div>
+            <div class="task-actions">
+              <!-- Due Status Icon with Tooltip -->
+              <span class="due-icon-wrapper">
+                <span *ngIf="getDueStatus(task.date) === 'overdue'">
+                  <!-- <i class="bi bi-exclamation-circle"></i> -->
+                  <span class="tooltip-text">Overdue</span>
+                </span>
+                <span *ngIf="getDueStatus(task.date) === 'due-today'">
+                  <!-- <i class="bi bi-clock"></i> -->
+                  <span class="tooltip-text">Almost Due</span>
+                </span>
+                <span *ngIf="getDueStatus(task.date) === 'due-in-2-days'">
+                  <!-- <i class="bi bi-check-circle"></i> -->
+                  <span class="tooltip-text">Not Due Yet</span>
+                </span>
+              </span>
+              <button (click)="openEditDialog(task.id)" class="edit-btn" style="color:gray;">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button (click)="deleteTask(task)" class="btn">
+                <i class="bi bi-trash" style="color:gray;"></i>
+              </button>
+            </div>
+          </div>
+          <div class="task-body">
+            <div class="task-name">{{task.task_name}}</div>
+            <div class="task-desc">{{task.task_desc}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

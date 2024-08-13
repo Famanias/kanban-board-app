@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+html, body{
+    height: 100%;
+}
+
+body{
+
+    background-image: url('../src/assets/background-aesthethic.jpg');
+    background-color: #875f82;;
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+    overflow-y: auto !important;
+    font-family: 'Itim';
+}

@@ -1,0 +1,34 @@
+<!-- login.component.html -->
+<div class="login-container">
+  <h2>Login</h2>
+  <form (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="user_name">Username</label>
+      <input
+        type="text"
+        id="user_name"
+        [(ngModel)]="user.user_name"
+        name="user_name"
+        placeholder="Enter your username"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="user_pass">Password</label>
+      <input
+        type="password"
+        id="user_pass"
+        [(ngModel)]="user.user_pass"
+        name="user_pass"
+        placeholder="Enter your password"
+        required
+      />
+    </div>
+    <a href="register">New user? Register</a>
+    <div class="form-group">
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+    </div>
+    <button type="submit">Login</button>
+  </form>
+</div>
