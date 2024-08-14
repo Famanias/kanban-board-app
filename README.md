@@ -1,5 +1,12 @@
-# Kanban Board
+# About
+This project is a simple Kanban Board Todo List Application with CRUD functionalities and drag and drop feature.
 
+# Tech Stacks
+Front-end: Angular
+Back-end: REST API through PHP
+Database: MySQL
+
+# Kanban Board
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.3.
 
 ## Development server
