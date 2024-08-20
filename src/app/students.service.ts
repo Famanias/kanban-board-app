@@ -22,7 +22,7 @@ export class StudentsService {
   constructor(private http: HttpClient) { }
   
   private handleError(error: any) {
-    console.error('An error occurred:', error);
+    console.error('An unexpected error occurred:', error);
     return throwError('Something went wrong. Please try again later.');
   }
 
