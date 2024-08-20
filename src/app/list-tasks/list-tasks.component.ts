@@ -69,18 +69,6 @@ export class ListTasksComponent implements OnInit {
     );
   }
 
-  // deleteTask(taskId: number): void {
-  //   if (confirm('Are you sure you want to delete this task?')) {
-  //     this.http.delete(`http://localhost/restAPI/tasks/${taskId}`)
-  //       .subscribe(response => {
-  //         // Assuming the API returns a success status
-  //         this.updateTaskLists();
-  //       }, error => {
-  //         console.error('There was an error deleting the task!', error);
-  //       });
-  //   }
-  // }
-
   drop(event: CdkDragDrop<any[]>, status: string) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -152,7 +140,6 @@ export class ListTasksComponent implements OnInit {
 
   openDialog(){
     const dialogRef = this.dialogRef.open(AddTasksComponent);
-    
     dialogRef.componentInstance.taskUpdated.subscribe(() => {
       this.fetchTasks(JSON.parse(localStorage.getItem('user') || '{}').user_id);
     });
