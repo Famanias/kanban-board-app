@@ -16,7 +16,6 @@ interface Tasks {
   providedIn: 'root'
 })
 export class StudentsService {
-  // baseUrl: string = 'http://localhost/restAPII';
   baseUrl: string = 'http://localhost/restfulapi';
 
   constructor(private http: HttpClient) { }
@@ -34,27 +33,9 @@ export class StudentsService {
     return this.http.get<any>(`${this.baseUrl}/tasks/${id}`);
   }
 
-  // deleteTask(id: number): Observable<any> {
-  //   return this.http.delete(`${this.baseUrl}/delete?id=${id}`);
-  // }
-
-  // deleteTask(id: number): Observable<void> {
-  //   return this.http.delete<void>(`${this.baseUrl}/tasks/${id}`);
-  // }
-  
-  // deleteTask(id: number): Observable<void> {
-  //   return this.http.delete<void>(`${this.baseUrl}/tasks/${id}`).pipe(
-  //     catchError(this.handleError)
-  //   );
-  // }
-
   deleteTask(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/tasks/${id}`);
   }
-
-  // createTask(task: any): Observable<any> {
-  //   return this.http.post<any>(`${this.baseUrl}/tasks/insert`, task);
-  // }
 
   createTask(task: Omit<Tasks, 'id'>): Observable<Tasks> {
     return this.http.post<Tasks>(`${this.baseUrl}/tasks/tasks`, task);
