@@ -1,6 +1,12 @@
 # About
 This project is a simple Kanban Board Todo List Application with CRUD functionalities and drag and drop feature.
 
+# SET UP
+make sure that the resfulapi folder is in the xampp >>> htdocs folder
+
+# DATABASE SET UP
+just create a databasee named kanban, then import kanban.sql
+
 # Tech Stacks
 Front-end: Angular
 Back-end: REST API through PHP
